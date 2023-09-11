@@ -1,5 +1,4 @@
 # build backend image
-./backend/mvnw clean install -DskipTests -f backend/pom.xml
 docker build -t backend-pagnet:latest ./backend
 
 # build frontend image
