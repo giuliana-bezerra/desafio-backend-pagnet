@@ -5,6 +5,9 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 
 
 const App = () => {
+  const apiURL = process.env.REACT_APP_API_URL;
+  const uploadURL = process.env.REACT_APP_UPLOAD_URL;
+
   const [file, setFile] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [error, setError] = useState(null);
@@ -22,7 +25,7 @@ const App = () => {
       formData.append('file', file);
 
       // Make the API request using Axios
-      const response = await axios.post('http://localhost:8080/cnab/upload', formData, {
+      const response = await axios.post(uploadURL, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -41,7 +44,7 @@ const App = () => {
   const fetchTransactions = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:8080/cnab');
+      const response = await axios.get(apiURL);
 
       // Update state with the fetched transaction data
       setTransactions(response.data);
