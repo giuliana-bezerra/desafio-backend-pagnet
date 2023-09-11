@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS transacao (
-  id bigint AUTO_INCREMENT primary key,
+  id SERIAL primary key,
   tipo int,
   data date,
   valor decimal,

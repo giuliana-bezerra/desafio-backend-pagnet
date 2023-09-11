@@ -7,20 +7,30 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/pagnet?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/pagnet
     depends_on:
-      - mysql-db
+      - postgres-db
 
   # MySQL Database
-  mysql-db:
-    image: mysql:8.0
+  # mysql-db:
+  #   image: mysql:8.0
+  #   ports:
+  #     - "3307:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 123456
+  #     MYSQL_DATABASE: pagnet
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: 123456
+  
+  # Postgres Database
+  postgres-db:
+    image: postgres:13
     ports:
-      - "3307:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: pagnet
-      MYSQL_USER: user
-      MYSQL_PASSWORD: 123456
+      POSTGRES_DB: pagnet
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 123456
 
   # SPA Application
   spa-app:
