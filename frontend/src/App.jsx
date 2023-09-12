@@ -5,7 +5,7 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 
 
 const App = () => {
-  const apiURL = process.env.REACT_APP_API_URL;
+  const fetchURL = process.env.REACT_APP_FETCH_URL;
   const uploadURL = process.env.REACT_APP_UPLOAD_URL;
 
   const [file, setFile] = useState(null);
@@ -44,7 +44,7 @@ const App = () => {
   const fetchTransactions = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(apiURL);
+      const response = await axios.get(fetchURL);
 
       // Update state with the fetched transaction data
       setTransactions(response.data);
