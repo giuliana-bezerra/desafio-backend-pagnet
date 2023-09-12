@@ -21,14 +21,14 @@ public class CnabController {
     this.transacaoService = transacaoService;
   }
 
-  @CrossOrigin(origins = "http://localhost:9090")
+  @CrossOrigin(origins = { "http://localhost:9090", "https://frontend-pagnet.onrender.com" })
   @PostMapping("upload")
   public String upload(@RequestParam("file") MultipartFile file) throws Exception {
     cnabService.uploadCnabFile(file);
     return "Processamento iniciado!";
   }
 
-  @CrossOrigin(origins = "http://localhost:9090")
+  @CrossOrigin(origins = { "http://localhost:9090", "https://frontend-pagnet.onrender.com" })
   @GetMapping
   List<TransacaoReport> listAll() {
     return transacaoService.getTotaisTransacoesByNomeDaLoja();
