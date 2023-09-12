@@ -5,8 +5,8 @@ import { faSync } from '@fortawesome/free-solid-svg-icons';
 
 
 const App = () => {
-  const fetchURL = process.env.REACT_APP_FETCH_URL;
-  const uploadURL = process.env.REACT_APP_UPLOAD_URL;
+  const fetchURL = import.meta.env.VITE_REACT_APP_FETCH_URL;
+  const uploadURL = import.meta.env.VITE_REACT_APP_UPLOAD_URL;
 
   const [file, setFile] = useState(null);
   const [transactions, setTransactions] = useState([]);
