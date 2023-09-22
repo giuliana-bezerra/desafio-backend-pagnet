@@ -140,7 +140,6 @@ const App = () => {
                       <th className="px-4 py-2">Data</th>
                       <th className="px-4 py-2">Dono da Loja</th>
                       <th className="px-4 py-2">Hora</th>
-                      <th className="px-4 py-2">ID</th>
                       <th className="px-4 py-2">Nome da Loja</th>
                       <th className="px-4 py-2">Tipo</th>
                       <th className="px-4 py-2">Valor</th>
@@ -154,7 +153,6 @@ const App = () => {
                         <td className="px-4 py-2">{transacao.data}</td>
                         <td className="px-4 py-2">{transacao.donoDaLoja}</td>
                         <td className="px-4 py-2">{transacao.hora}</td>
-                        <td className="px-4 py-2">{transacao.id}</td>
                         <td className="px-4 py-2">{transacao.nomeDaLoja}</td>
                         <td className="px-4 py-2">{transacao.tipo}</td>
                         <td className="px-4 py-2">{formatCurrency(transacao.valor)}</td>

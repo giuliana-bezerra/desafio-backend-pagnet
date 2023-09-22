@@ -10,6 +10,7 @@ public enum TipoTransacao {
     this.tipo = tipo;
   }
 
+  // Similar to Strategy Pattern
   public int getSinal() {
     return switch (tipo) {
       case 1, 4, 5, 6, 7, 8 -> 1;

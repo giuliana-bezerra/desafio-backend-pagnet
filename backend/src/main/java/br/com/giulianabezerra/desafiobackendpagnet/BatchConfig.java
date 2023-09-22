@@ -1,5 +1,7 @@
 package br.com.giulianabezerra.desafiobackendpagnet;
 
+import java.math.BigDecimal;
+
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
@@ -17,7 +19,6 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.transform.Range;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +28,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class BatchConfig {
-  @Autowired
-  private PlatformTransactionManager transactionManager;
+  private final PlatformTransactionManager transactionManager;
+  private final JobRepository jobRepository;
+
+  public BatchConfig(PlatformTransactionManager transactionManager, JobRepository jobRepository) {
+    this.transactionManager = transactionManager;
+    this.jobRepository = jobRepository;
+  }
 
   @Bean
-  Job job(Step step, JobRepository jobRepository) {
+  Job job(Step step) {
     return new JobBuilder("job", jobRepository)
         .start(step)
         .build();
@@ -39,7 +45,6 @@ public class BatchConfig {
 
   @Bean
   Step step(
-      JobRepository jobRepository,
       FlatFileItemReader<TransacaoCNAB> reader,
       ItemProcessor<TransacaoCNAB, Transacao> processor,
       ItemWriter<Transacao> writer) {
@@ -70,9 +75,9 @@ public class BatchConfig {
   ItemProcessor<TransacaoCNAB, Transacao> processor() {
     return item -> {
       var transacao = new Transacao(
-          null, item.tipo(), null, null, item.cpf(), item.cartao(),
-          null, item.donoDaLoja().trim(), item.nomeDaLoja().trim())
-          .withValor(item.valor())
+          null, item.tipo(), null,
+          item.valor().divide(BigDecimal.valueOf(100)), item.cpf(),
+          item.cartao(), null, item.donoDaLoja().trim(), item.nomeDaLoja().trim())
           .withData(item.data())
           .withHora(item.hora());
 
@@ -86,7 +91,8 @@ public class BatchConfig {
         .dataSource(dataSource)
         .sql("""
               INSERT INTO transacao (
-                tipo, data, valor, cpf, cartao, hora, dono_loja, nome_loja
+                tipo, data, valor, cpf, cartao,
+                hora, dono_loja, nome_loja
               ) VALUES (
                 :tipo, :data, :valor, :cpf, :cartao,
                 :hora, :donoDaLoja, :nomeDaLoja
