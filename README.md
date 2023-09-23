@@ -7,7 +7,7 @@
  <img src="https://img.shields.io/static/v1?label=Tipo&message=Serie&color=8257E5&labelColor=000000" alt="Série" />
 </p>
 
-Série apresentada [aqui]() para ilustrar todas as etapas de desenvolvimento, desde a arquitetura até o deploy de uma aplicação do mundo real. Esse projeto foi baseado [nesse desafio](https://github.com/Pagnet/desafio-back-end/tree/master) para uma vaga backend. A solução desenvolvida possui projetos front e backend e utiliza Spring Batch para o processamento de um arquivo CNAB e exibe os seus lançamentos importados em uma interface SPA com React.
+Série apresentada [aqui](https://www.youtube.com/playlist?list=PLiFLtuN04BS1c-JvhKFxYyeD-GVtnwUcx) para ilustrar todas as etapas de desenvolvimento, desde a arquitetura até o deploy de uma aplicação do mundo real. Esse projeto foi baseado [nesse desafio](https://github.com/Pagnet/desafio-back-end/tree/master) para uma vaga backend. A solução desenvolvida possui projetos front e backend e utiliza Spring Batch para o processamento de um arquivo CNAB e exibe os seus lançamentos importados em uma interface SPA com React.
 
 ## Tecnologias
  
