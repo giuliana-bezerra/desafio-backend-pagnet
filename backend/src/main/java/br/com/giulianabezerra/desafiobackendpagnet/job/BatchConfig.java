@@ -1,4 +1,4 @@
-package br.com.giulianabezerra.desafiobackendpagnet;
+package br.com.giulianabezerra.desafiobackendpagnet.job;
 
 import java.math.BigDecimal;
 
@@ -25,6 +25,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import br.com.giulianabezerra.desafiobackendpagnet.entity.Transacao;
+import br.com.giulianabezerra.desafiobackendpagnet.entity.TransacaoCNAB;
 
 @Configuration
 public class BatchConfig {

@@ -1,4 +1,4 @@
-package br.com.giulianabezerra.desafiobackendpagnet;
+package br.com.giulianabezerra.desafiobackendpagnet.web;
 
 import java.util.List;
 
@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import br.com.giulianabezerra.desafiobackendpagnet.entity.TransacaoReport;
+import br.com.giulianabezerra.desafiobackendpagnet.service.CnabService;
+import br.com.giulianabezerra.desafiobackendpagnet.service.TransacaoService;
 
 @RestController
 @RequestMapping("cnab")

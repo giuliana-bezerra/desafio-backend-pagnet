@@ -1,4 +1,4 @@
-package br.com.giulianabezerra.desafiobackendpagnet;
+package br.com.giulianabezerra.desafiobackendpagnet.entity;
 
 public enum TipoTransacao {
   DEBITO(1), BOLETO(2), FINANCIAMENTO(3), CREDITO(4), RECEBIMENTO_EMPRESTIMO(5),

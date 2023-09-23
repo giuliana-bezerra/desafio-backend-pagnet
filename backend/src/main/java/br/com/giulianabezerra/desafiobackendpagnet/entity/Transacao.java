@@ -1,4 +1,4 @@
-package br.com.giulianabezerra.desafiobackendpagnet;
+package br.com.giulianabezerra.desafiobackendpagnet.entity;
 
 import java.math.BigDecimal;
 import java.sql.Date;

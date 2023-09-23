@@ -1,4 +1,4 @@
-package br.com.giulianabezerra.desafiobackendpagnet;
+package br.com.giulianabezerra.desafiobackendpagnet.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+
+import br.com.giulianabezerra.desafiobackendpagnet.entity.TipoTransacao;
+import br.com.giulianabezerra.desafiobackendpagnet.entity.Transacao;
+import br.com.giulianabezerra.desafiobackendpagnet.entity.TransacaoReport;
+import br.com.giulianabezerra.desafiobackendpagnet.repository.TransacaoRepository;
 
 @Service
 public class TransacaoService {
