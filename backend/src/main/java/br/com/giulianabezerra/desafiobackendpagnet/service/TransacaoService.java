@@ -30,7 +30,8 @@ public class TransacaoService {
     transacoes.forEach(transacao -> {
       String nomeDaLoja = transacao.nomeDaLoja();
       TipoTransacao tipoTransacao = TipoTransacao.findByTipo(transacao.tipo());
-      BigDecimal valor = transacao.valor().multiply(BigDecimal.valueOf(tipoTransacao.getSinal()));
+      BigDecimal valor = transacao.valor().multiply(
+          BigDecimal.valueOf(tipoTransacao.getSinal()));
 
       reportMap.compute(nomeDaLoja, (key, existingReport) -> {
         TransacaoReport report = (existingReport != null) ? existingReport
