@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import br.com.giulianabezerra.desafiobackendpagnet.entity.TipoTransacao;
 import br.com.giulianabezerra.desafiobackendpagnet.entity.Transacao;
 import br.com.giulianabezerra.desafiobackendpagnet.entity.TransacaoReport;
 import br.com.giulianabezerra.desafiobackendpagnet.repository.TransacaoRepository;
@@ -28,15 +27,13 @@ public class TransacaoService {
     Map<String, TransacaoReport> reportMap = new LinkedHashMap<>();
 
     transacoes.forEach(transacao -> {
-      String nomeDaLoja = transacao.nomeDaLoja();
-      TipoTransacao tipoTransacao = TipoTransacao.findByTipo(transacao.tipo());
-      BigDecimal valor = transacao.valor().multiply(
-          BigDecimal.valueOf(tipoTransacao.getSinal()));
+      var nomeDaLoja = transacao.nomeDaLoja();
+      var valor = transacao.valor();
 
       reportMap.compute(nomeDaLoja, (key, existingReport) -> {
         TransacaoReport report = (existingReport != null) ? existingReport
             : new TransacaoReport(BigDecimal.ZERO, key, new ArrayList<>());
-        return report.addTotal(valor).addTransacao(transacao.withValor(valor));
+        return report.addTotal(valor).addTransacao(transacao);
       });
     });
 
