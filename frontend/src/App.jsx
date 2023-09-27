@@ -24,15 +24,13 @@ const App = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      // Make the API request using Axios
       const response = await axios.post(uploadURL, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // Clear any previous error messages
+
       setError(null);
-      // Set success message
       setSuccess(response.data);
 
     } catch (error) {
@@ -45,8 +43,6 @@ const App = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(fetchURL);
-
-      // Update state with the fetched transaction data
       setTransactions(response.data);
     } catch (error) {
       console.error('Error fetching transactions:', error);
@@ -58,7 +54,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // You can fetch transactions when the component mounts (or at any other time)
     fetchTransactions();
   }, []);
 
@@ -96,10 +91,13 @@ const App = () => {
             Upload File
           </button>
         </div>
-        {/* Form Messages */}
-        {success && <p className="text-green-500 mt-2">{success}</p>}
-        {error && <p className="text-red-500 mt-2">{error}</p>}
       </div>
+
+      {/* Form Messages */}
+      {success && <p className="text-green-500 mt-2">{success}</p>}
+      {error && <p className="text-red-500 mt-2">{error}</p>}
+
+      <br />
 
       {/* Refresh Button */}
       <button
