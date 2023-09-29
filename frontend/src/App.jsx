@@ -9,7 +9,7 @@ const App = () => {
   const uploadURL = import.meta.env.VITE_REACT_APP_UPLOAD_URL;
 
   const [file, setFile] = useState(null);
-  const [transactions, setTransactions] = useState([]);
+  const [reports, setReports] = useState([]);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +43,7 @@ const App = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(fetchURL);
-      setTransactions(response.data);
+      setReports(response.data);
     } catch (error) {
       console.error('Error fetching transactions:', error);
     } finally {
@@ -113,19 +113,19 @@ const App = () => {
       <div className="p-4">
         <h2 className="text-2xl font-semibold mb-4">Transações</h2>
         <ul className="bg-white shadow-md rounded-md p-4">
-          {transactions.length === 0 ? (
+          {reports.length === 0 ? (
             <p className="mb-4 text-gray-500 text-center">Sem transações disponíveis.</p>
           ) : (
 
-            transactions.map((transaction, key) => (
+            reports.map((report, key) => (
               <li
                 key={key}
                 className="mb-4 p-4 border-b border-gray-300 flex flex-col"
               >
                 <div className="flex justify-between items-center mb-2">
-                  <div className="text-xl font-semibold">{transaction.nomeDaLoja}</div>
-                  <div className={`text-${parseFloat(transaction.total) >= 0 ? 'green' : 'red'}-500 font-semibold`}>
-                    Total: {formatCurrency(parseFloat(transaction.total))}
+                  <div className="text-xl font-semibold">{report.nomeDaLoja}</div>
+                  <div className={`text-${parseFloat(report.total) >= 0 ? 'green' : 'red'}-500 font-semibold`}>
+                    Total: {formatCurrency(parseFloat(report.total))}
                   </div>
                 </div>
 
@@ -144,7 +144,7 @@ const App = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {transaction.transacoes.map((transacao, index) => (
+                    {report.transacoes.map((transacao, index) => (
                       <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
                         <td className="px-4 py-2">{transacao.cartao}</td>
                         <td className="px-4 py-2">{transacao.cpf}</td>
